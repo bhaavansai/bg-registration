@@ -64,11 +64,14 @@ export default function BGRegistration() {
         mobile: form.mobile.trim(), // sending as the client provides; server will normalize/validate
       };
 
-      const res = await fetch("http://localhost:5001/api/registration/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      const res = await fetch(
+        "https://music-backend-oumm.onrender.com/api/registration/",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }
+      );
 
       const body = await res.json().catch(() => ({}));
 
@@ -133,7 +136,7 @@ export default function BGRegistration() {
             backgroundImage: `linear-gradient(rgba(2,6,23,0.35), rgba(2,6,23,0.12)), url(${Background})`,
           }}
         >
-          <div className="container mx-auto px-6 md:px-12 lg:px-20">
+          <div className="container mx-auto px-6 md:px-12 lg:px-20 pb-8 md:pb-0">
             <div className="max-w-3xl">
               <span className="inline-block bg-amber-100 text-amber-800 font-semibold px-3 py-1 rounded-full mb-4">
                 Bhagavad Gita Course
@@ -174,7 +177,7 @@ export default function BGRegistration() {
         </div>
 
         {/* Decorative Krishna image card */}
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 -mt-12 relative z-10">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 mt-6 md:-mt-12 relative z-10">
           <div className="bg-white rounded-xl shadow-xl p-4 md:p-6 grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
             <div className="flex items-center gap-4">
               <img
