@@ -29,17 +29,39 @@ export default function BGRegistration() {
   const [isPaused, setIsPaused] = useState(false);
   const touchStartRef = useRef(0);
   const AUTO_MS = 4000; // 4000ms = 4s
-  // 48-hour limited-time offer timer (starts when page loads)
-  const [offerEndsAt] = useState(() => Date.now() + 48 * 60 * 60 * 1000);
-  const [timeLeft, setTimeLeft] = useState(offerEndsAt - Date.now());
+  const YEAR = new Date().getFullYear(); // uses current year
+  const OFFER_START = new Date(YEAR, 7, 17, 0, 0, 0).getTime(); // month 7 = August
+  const OFFER_END = OFFER_START + 48 * 60 * 60 * 1000; // +48 hours
+
+  // state: timeLeft holds ms until next event (start or end)
+  const [timeLeft, setTimeLeft] = useState(() => {
+    const now = Date.now();
+    return now < OFFER_START ? OFFER_START - now : Math.max(0, OFFER_END - now);
+  });
+  const [hasStarted, setHasStarted] = useState(
+    () => Date.now() >= OFFER_START && Date.now() < OFFER_END
+  );
 
   useEffect(() => {
     const id = setInterval(() => {
-      setTimeLeft(Math.max(0, offerEndsAt - Date.now()));
+      const now = Date.now();
+      if (now < OFFER_START) {
+        setHasStarted(false);
+        setTimeLeft(OFFER_START - now);
+      } else if (now >= OFFER_START && now < OFFER_END) {
+        setHasStarted(true);
+        setTimeLeft(Math.max(0, OFFER_END - now));
+      } else {
+        setHasStarted(true);
+        setTimeLeft(0);
+        // optionally clear interval when expired:
+        // clearInterval(id);
+      }
     }, 1000);
     return () => clearInterval(id);
-  }, [offerEndsAt]);
+  }, []);
 
+  // helper (same as yours)
   function formatTimeLeft(ms) {
     const total = Math.floor(ms / 1000);
     const days = Math.floor(total / 86400);
@@ -459,7 +481,9 @@ export default function BGRegistration() {
                 Offer ends in:
               </div>
               <div className="mt-2 text-2xl font-bold text-amber-600 tracking-wide">
-                {formatTimeLeft(timeLeft)}
+                {hasStarted
+                  ? `Ends in: ${formatTimeLeft(timeLeft)}`
+                  : `Starts in: ${formatTimeLeft(timeLeft)}`}
               </div>
             </div>
 
