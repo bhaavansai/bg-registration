@@ -126,11 +126,14 @@ export default function BGRegistration() {
         year: form.year,
       };
 
-      const res = await fetch("http://localhost:5001/api/registration/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      const res = await fetch(
+        "https://music-backend-oumm.onrender.com/api/registration",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }
+      );
 
       const body = await res.json().catch(() => ({}));
 
