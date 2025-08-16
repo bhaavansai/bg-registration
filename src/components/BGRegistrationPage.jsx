@@ -208,17 +208,12 @@ export default function BGRegistration() {
       {/* HERO */}
       <header className="relative overflow-hidden">
         <img
-          src={SP}
-          alt="Decoration Left"
-          className="absolute top-2 left-2 w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 object-contain z-20"
-        />
-        <img
           src={ISKDHN}
           alt="Decoration Right"
           className="absolute top-2 right-2 w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 object-contain z-20"
         />
         <div
-          className="h-96 md:h-[520px] bg-cover bg-center flex items-center"
+          className="min-h-[480px] md:min-h-[520px] bg-cover bg-center flex items-center sm:pt-0"
           style={{
             backgroundImage: `linear-gradient(rgba(2,6,23,0.35), rgba(2,6,23,0.12)), url(${Background})`,
           }}
