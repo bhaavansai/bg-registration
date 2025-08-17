@@ -117,7 +117,7 @@ export default function BGRegistration() {
 
     const digits = (form.mobile || "").replace(/\D/g, "");
     if (!digits || digits.length < 7)
-      e.mobile = "Please enter a valid WhatsApp number";
+      e.mobile = "Please enter a valid WhatsApp Number";
 
     if (!form.email || !String(form.email).includes("@"))
       e.email = "Please enter a valid email";
