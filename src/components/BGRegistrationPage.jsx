@@ -22,7 +22,7 @@ export default function BGRegistration() {
   // const AUTO_MS = 4000; // 4000ms = 4s
   const YEAR = new Date().getFullYear(); // uses current year
   const OFFER_START = new Date(YEAR, 7, 17, 0, 0, 0).getTime(); // month 7 = August
-  const OFFER_END = OFFER_START + 72 * 60 * 60 * 1000; // +72 hours
+  const OFFER_END = OFFER_START + 92 * 60 * 60 * 1000; // +72 hours
 
   // state: timeLeft holds ms until next event (start or end)
   const [timeLeft, setTimeLeft] = useState(() => {
@@ -184,20 +184,20 @@ export default function BGRegistration() {
 
   const videos = [
     {
-      embedUrl: "https://www.youtube.com/embed/s8jUlzzV0A4?si=H0EgkfTIw6q1AZFr",
-      name: "Bhaavan Sai",
-      college: "IIT Dhanbad",
-      branch: "M&C",
-      batch: "2025",
-      placedIn: "PhonePe",
-    },
-    {
       embedUrl: "https://www.youtube.com/embed/UQOmxYI5tD8?si=IuEMbNLQJAku7C9v",
       name: "Hrutidipan Pradhan",
       college: "IIT Dhanbad",
       branch: "FME",
       batch: "2024",
       placedIn: "IOCL",
+    },
+    {
+      embedUrl: "https://www.youtube.com/embed/s8jUlzzV0A4?si=H0EgkfTIw6q1AZFr",
+      name: "Bhaavan Sai",
+      college: "IIT Dhanbad",
+      branch: "M&C",
+      batch: "2025",
+      placedIn: "PhonePe",
     },
     // {
     //   embedUrl: "https://www.youtube.com/embed/Q0_O8PYNoj0?si=CWo4amxxe87u3omV",
