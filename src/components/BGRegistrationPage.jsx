@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import BhagavadGita from "../assets/Bhagavad-Gita.jpg";
 import Background from "../assets/Background.jpg";
 import HGNPP from "../assets/HG_NPP.png"; // Example image, replace with your own
-import SP from "../assets/SP.jfif";
-import ISKDHN from "../assets/ISKDHN.PNG";
+import ISKDHN from "../assets/ISKDHN.png";
 
 // Single-file React component (default export) using Tailwind CSS classes.
 // Install/usage notes (brief):
