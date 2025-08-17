@@ -3,13 +3,6 @@ import Background from "../assets/Background.jpg";
 import HGNPP from "../assets/HG_NPP.png"; // Example image, replace with your own
 import ISKDHN from "../assets/ISKDHN.png";
 
-// Single-file React component (default export) using Tailwind CSS classes.
-// Install/usage notes (brief):
-// - This component expects Tailwind CSS to be configured in your project.
-// - Paste this file into a React project (Vite / Create React App). Example: src/components/BGRegistration.jsx
-// - Import and render <BGRegistration /> in App.jsx.
-// - Replace image URLs and API endpoint '/api/register' with your real assets/endpoints.
-
 export default function BGRegistration() {
   const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -23,13 +16,13 @@ export default function BGRegistration() {
     year: "",
   });
   const [errors, setErrors] = useState({});
-  const [current, setCurrent] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const touchStartRef = useRef(0);
-  const AUTO_MS = 4000; // 4000ms = 4s
+  // const [current, setCurrent] = useState(0);
+  // const [isPaused, setIsPaused] = useState(false);
+  // const touchStartRef = useRef(0);
+  // const AUTO_MS = 4000; // 4000ms = 4s
   const YEAR = new Date().getFullYear(); // uses current year
   const OFFER_START = new Date(YEAR, 7, 17, 0, 0, 0).getTime(); // month 7 = August
-  const OFFER_END = OFFER_START + 48 * 60 * 60 * 1000; // +48 hours
+  const OFFER_END = OFFER_START + 72 * 60 * 60 * 1000; // +72 hours
 
   // state: timeLeft holds ms until next event (start or end)
   const [timeLeft, setTimeLeft] = useState(() => {
@@ -71,20 +64,21 @@ export default function BGRegistration() {
   }
 
   const colleges = [
-    "IIT Kanpur",
-    "IIT Roorkee",
-    "IIT Guwahati",
-    "IIT Kharagpur",
-    "IIT Dhanbad",
-    "NIT Durgapur",
-    "IIESTS",
-    "NIT Jamshedpur",
-    "IIT Patna",
-    "NIT Patna",
-    "IIT BHU",
-    "NIT Allahabad",
     "BIT Sindri",
+    "IIT BHU",
+    "IIT Dhanbad",
+    "IIT Guwahati",
+    "IIT Kanpur",
+    "IIT Kharagpur",
+    "IIT Patna",
+    "IIT Roorkee",
+    "IIESTS",
+    "NIT Allahabad",
+    "NIT Durgapur",
+    "NIT Jamshedpur",
+    "NIT Patna",
     "SNMMCH",
+    "Other",
   ];
 
   const degrees = ["B.Tech", "M.Tech", "PhD", "MBA", "Medical", "Others"];
@@ -188,39 +182,80 @@ export default function BGRegistration() {
     { label: "Years", value: "8" },
   ];
 
-  const testimonials = [
+  const videos = [
     {
-      name: "Suman Mishra",
-      text: "This course changed how I approach daily life — deeply insightful and practical.",
+      embedUrl: "https://www.youtube.com/embed/s8jUlzzV0A4?si=H0EgkfTIw6q1AZFr",
+      name: "Bhaavan Sai",
+      college: "IIT Dhanbad",
+      branch: "M&C",
+      batch: "2025",
+      placedIn: "PhonePe",
     },
     {
-      name: "Ravi Kapoor",
-      text: "Clear teachings, patient teachers — highly recommended for beginners.",
+      embedUrl: "https://www.youtube.com/embed/UQOmxYI5tD8?si=IuEMbNLQJAku7C9v",
+      name: "Hrutidipan Pradhan",
+      college: "IIT Dhanbad",
+      branch: "FME",
+      batch: "2024",
+      placedIn: "IOCL",
     },
-    {
-      name: "Maya Iyer",
-      text: "A beautiful blend of philosophy and practice. Felt more centered after completing.",
-    },
+    // {
+    //   embedUrl: "https://www.youtube.com/embed/Q0_O8PYNoj0?si=CWo4amxxe87u3omV",
+    //   name: "Maya Iyer",
+    //   college: "IIT Guwahati",
+    //   branch: "Humanities",
+    //   batch: "2019",
+    //   placedIn: "Research",
+    // },
   ];
 
+  // slider state & refs for videos
+  const [current, setCurrent] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [playingIndex, setPlayingIndex] = useState(null); // index of playing video or null
+  const touchStartRef = useRef(0);
+  const AUTO_MS = 4000; // 3000..5000 okay
   useEffect(() => {
-    if (isPaused || testimonials.length <= 1) return;
+    // don't start when paused, when a video is playing, or when <=1 slide
+    if (isPaused || playingIndex !== null || videos.length <= 1) return;
+
     const id = setInterval(() => {
-      setCurrent((c) => (c + 1) % testimonials.length);
+      setCurrent((c) => (c + 1) % videos.length);
     }, AUTO_MS);
+
+    // debug line — remove later
+    console.log("autoplay started, interval id:", id);
+
     return () => clearInterval(id);
-  }, [isPaused, testimonials.length]);
+  }, [isPaused, playingIndex, videos.length]);
 
   function next() {
-    setCurrent((c) => (c + 1) % testimonials.length);
+    setCurrent((c) => (c + 1) % videos.length);
   }
   function prev() {
-    setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length);
+    setCurrent((c) => (c - 1 + videos.length) % videos.length);
   }
   function goTo(i) {
-    setCurrent(
-      ((i % testimonials.length) + testimonials.length) % testimonials.length
-    );
+    setCurrent(((i % videos.length) + videos.length) % videos.length);
+  }
+  function playVideo(i) {
+    setPlayingIndex(i);
+    setIsPaused(true);
+  }
+  function stopVideo() {
+    setPlayingIndex(null);
+    setIsPaused(false);
+  }
+
+  // helper to extract youtube id and thumbnail
+  function getYouTubeId(url) {
+    // accepts 'https://www.youtube.com/embed/ID' or full watch URLs
+    const m = url.match(/(?:\/embed\/|v=|\.be\/)([A-Za-z0-9_-]{6,})/);
+    return m ? m[1] : null;
+  }
+  function thumbFromEmbed(url) {
+    const id = getYouTubeId(url);
+    return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : "";
   }
 
   return (
@@ -360,9 +395,11 @@ export default function BGRegistration() {
               </li>
             </ul>
 
-            {/* Testimonials Slider */}
+            {/* Video Testimonials Slider */}
             <div className="mt-8">
-              <h3 className="text-xl font-bold">Hear from past attendees</h3>
+              <h2 className="text-2xl font-extrabold">
+                Hear from past attendees
+              </h2>
 
               <div
                 className="mt-4 relative w-full"
@@ -381,36 +418,98 @@ export default function BGRegistration() {
                   }
                 }}
               >
-                {/* viewport */}
                 <div className="overflow-hidden">
-                  {/* track */}
                   <div
                     className="flex transition-transform duration-700 ease-in-out"
                     style={{
-                      width: `${testimonials.length * 100}%`,
+                      width: `${videos.length * 100}%`,
                       transform: `translateX(-${
-                        (100 / testimonials.length) * current
+                        (100 / videos.length) * current
                       }%)`,
                     }}
                   >
-                    {testimonials.map((t, i) => (
+                    {videos.map((v, i) => (
                       <div
-                        key={t.name}
-                        className="flex-shrink-0 px-4"
-                        style={{
-                          width: `${100 / testimonials.length}%`, // 👈 each slide equal width
-                          maxWidth: "100%",
-                        }}
-                        aria-hidden={i === current ? "false" : "true"}
+                        key={i}
+                        className="flex-shrink-0 px-2"
+                        style={{ width: `${100 / videos.length}%` }}
                       >
-                        <blockquote className="bg-white p-6 rounded-lg shadow-sm mx-auto max-w-3xl md:max-w-2xl lg:max-w-3xl">
-                          <p className="text-sm md:text-base text-slate-700">
-                            “{t.text}”
-                          </p>
-                          <footer className="mt-3 text-xs md:text-sm text-slate-500">
-                            — {t.name}
-                          </footer>
-                        </blockquote>
+                        <div className="mx-auto max-w-xl">
+                          {/* Video box (reduced height) */}
+                          <div
+                            className="relative rounded-lg overflow-hidden bg-black"
+                            style={{ paddingTop: "50%" }}
+                          >
+                            {playingIndex === i ? (
+                              <>
+                                <iframe
+                                  title={`video-${i}`}
+                                  src={`${v.embedUrl}?autoplay=1&rel=0&showinfo=0`}
+                                  className="absolute inset-0 w-full h-full"
+                                  frameBorder="0"
+                                  allow="autoplay; encrypted-media; picture-in-picture"
+                                  allowFullScreen
+                                />
+                                <button
+                                  onClick={stopVideo}
+                                  className="absolute top-2 right-2 bg-white/90 text-slate-800 px-2 py-1 rounded-md text-xs"
+                                >
+                                  Close
+                                </button>
+                              </>
+                            ) : (
+                              <button
+                                onClick={() => playVideo(i)}
+                                className="absolute inset-0 w-full h-full flex items-center justify-center group"
+                                aria-label={`Play ${v.name} video`}
+                              >
+                                <img
+                                  src={thumbFromEmbed(v.embedUrl)}
+                                  alt={`${v.name} thumbnail`}
+                                  className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                                />
+                                <div className="relative z-10 flex items-center gap-3">
+                                  <div className="rounded-full bg-white/95 p-2 shadow-lg">
+                                    <svg
+                                      className="w-5 h-5 text-amber-600"
+                                      viewBox="0 0 24 24"
+                                      fill="currentColor"
+                                    >
+                                      <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                  </div>
+                                </div>
+                              </button>
+                            )}
+                          </div>
+
+                          {/* Compact person card */}
+                          <div className="mt-3 bg-white p-3 rounded-md shadow-sm flex items-center gap-3">
+                            {/* initials avatar */}
+                            <div className="w-10 h-10 rounded-full bg-amber-100 text-amber-800 font-semibold flex items-center justify-center text-sm">
+                              {(v.name || "")
+                                .split(" ")
+                                .map((n) => n[0])
+                                .slice(0, 2)
+                                .join("")}
+                            </div>
+
+                            {/* details */}
+                            <div className="flex-1 min-w-0">
+                              <div className="text-sm font-semibold text-slate-900 truncate">
+                                {v.name}
+                              </div>
+                              <div className="text-xs text-slate-500 truncate">
+                                {v.college} • {v.branch} • Batch {v.batch}
+                              </div>
+                            </div>
+
+                            {/* placed pill */}
+                            <div className="text-xs text-emerald-700 font-medium bg-emerald-50 px-2 py-1 rounded">
+                              {v.placedIn}
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -420,21 +519,21 @@ export default function BGRegistration() {
                 <button
                   onClick={prev}
                   className="hidden md:inline-flex absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow px-3 py-1 rounded-full"
-                  aria-label="Previous testimonial"
+                  aria-label="Previous video"
                 >
                   ‹
                 </button>
                 <button
                   onClick={next}
                   className="hidden md:inline-flex absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow px-3 py-1 rounded-full"
-                  aria-label="Next testimonial"
+                  aria-label="Next video"
                 >
                   ›
                 </button>
 
                 {/* Dots */}
                 <div className="flex items-center justify-center gap-2 mt-3">
-                  {testimonials.map((_, idx) => (
+                  {videos.map((_, idx) => (
                     <button
                       key={idx}
                       onClick={() => goTo(idx)}
@@ -443,7 +542,7 @@ export default function BGRegistration() {
                           ? "bg-amber-600 w-8 rounded-full"
                           : "bg-slate-300 w-2.5 rounded-full"
                       }`}
-                      aria-label={`Go to testimonial ${idx + 1}`}
+                      aria-label={`Go to video ${idx + 1}`}
                     />
                   ))}
                 </div>
