@@ -3,7 +3,7 @@ import BhagavadGita from "../assets/Bhagavad-Gita.jpg";
 import Background from "../assets/Background.jpg";
 import HGNPP from "../assets/HG_NPP.png"; // Example image, replace with your own
 import SP from "../assets/SP.jfif";
-import ISKDHN from "../assets/ISKDHN.png";
+import ISKDHN from "../assets/ISKDHN.PNG";
 
 // Single-file React component (default export) using Tailwind CSS classes.
 // Install/usage notes (brief):
@@ -161,7 +161,7 @@ export default function BGRegistration() {
 
       if (res.status === 201) {
         setSuccess(
-          `${form.name.trim()} successfully registered for the BG Course`
+          `${form.name.trim()} successfully registered for the Learn Gita Course`
         );
       } else if (res.status === 400) {
         setErrors({
@@ -291,9 +291,9 @@ export default function BGRegistration() {
                 className="w-28 h-28 rounded-lg object-cover shadow-md"
               />
               <div>
-                <h3 className="text-lg font-semibold">HG Naam Prem Das</h3>
+                <h3 className="text-lg font-semibold">Naam Prem Das</h3>
                 <p className="text-sm text-slate-600 mt-1">
-                  B.Tech - NIT Jameshedpur(2008)
+                  B.Tech (Mechanical Engineering), 2008
                 </p>
                 <p className="text-sm text-slate-600 mt-1">
                   President, ISKCON Dhanbad
@@ -325,7 +325,7 @@ export default function BGRegistration() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
           <div className="lg:col-span-2">
             <h2 className="text-2xl font-extrabold">
-              Why register for the Bhagavad Gita course?
+              Why register for the Learn Gita course?
             </h2>
             <p className="mt-4 text-slate-700 leading-relaxed">
               The Bhagavad Gita offers a practical philosophy for living —
@@ -548,7 +548,7 @@ export default function BGRegistration() {
           <div className="relative w-full max-w-md bg-white rounded-xl shadow-2xl p-6 z-10">
             <div className="flex items-start justify-between">
               <h3 className="text-lg font-bold">
-                Register for Bhagavad Gita Course
+                Register for Learn Gita Course
               </h3>
               <button
                 onClick={closeModal}
