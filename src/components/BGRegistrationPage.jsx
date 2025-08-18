@@ -631,8 +631,20 @@ export default function BGRegistration() {
               Teaching timeless wisdom with practical application.
             </p>
           </div>
-          <div className="text-sm text-slate-400">
-            © {new Date().getFullYear()} ISKCON Dhanbad
+
+          <div className="text-sm text-slate-400 mt-3 md:mt-0">
+            <div>
+              Contact us:&nbsp;
+              <a
+                href="tel:+919570276337"
+                className="text-amber-400 hover:underline"
+              >
+                +91 95702 76337
+              </a>
+            </div>
+            <div className="mt-2">
+              © {new Date().getFullYear()} ISKCON Dhanbad
+            </div>
           </div>
         </div>
       </footer>
