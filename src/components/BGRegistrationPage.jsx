@@ -16,13 +16,9 @@ export default function BGRegistration() {
     year: "",
   });
   const [errors, setErrors] = useState({});
-  // const [current, setCurrent] = useState(0);
-  // const [isPaused, setIsPaused] = useState(false);
-  // const touchStartRef = useRef(0);
-  // const AUTO_MS = 4000; // 4000ms = 4s
   const YEAR = new Date().getFullYear(); // uses current year
   const OFFER_START = new Date(YEAR, 7, 17, 0, 0, 0).getTime(); // month 7 = August
-  const OFFER_END = OFFER_START + 92 * 60 * 60 * 1000; // +72 hours
+  const OFFER_END = OFFER_START + 192 * 60 * 60 * 1000; // +72 hours
 
   // state: timeLeft holds ms until next event (start or end)
   const [timeLeft, setTimeLeft] = useState(() => {
@@ -573,7 +569,7 @@ export default function BGRegistration() {
               </div>
             </div>
 
-            {/* <div className="text-center bg-amber-50 p-4 rounded-lg shadow-sm mt-2">
+            <div className="text-center bg-amber-50 p-4 rounded-lg shadow-sm mt-2">
               <div className="text-lg font-semibold text-slate-700">
                 Offer ends in:
               </div>
@@ -582,7 +578,7 @@ export default function BGRegistration() {
                   ? `Ends in: ${formatTimeLeft(timeLeft)}`
                   : `Starts in: ${formatTimeLeft(timeLeft)}`}
               </div>
-            </div> */}
+            </div>
 
             <dl className="mt-4 grid grid-cols-2 gap-4 text-sm text-slate-600">
               <div>
