@@ -285,8 +285,9 @@ export default function BGRegistration() {
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <button
-                  onClick={openModal}
-                  className="inline-flex items-center gap-3 bg-amber-500 hover:bg-amber-600 text-white font-semibold px-5 py-3 rounded-lg shadow-lg transition"
+                  // onClick={openModal} bg-amber-500 hover:bg-amber-600
+                  disabled
+                  className="inline-flex items-center gap-3 bg-gray-400 cursor-not-allowed  text-white font-semibold px-5 py-3 rounded-lg shadow-lg transition"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
