@@ -569,7 +569,7 @@ export default function BGRegistration() {
               </div>
             </div>
 
-            <div className="text-center bg-amber-50 p-4 rounded-lg shadow-sm mt-2">
+            {/* <div className="text-center bg-amber-50 p-4 rounded-lg shadow-sm mt-2">
               <div className="text-lg font-semibold text-slate-700">
                 Offer ends in:
               </div>
@@ -578,7 +578,7 @@ export default function BGRegistration() {
                   ? `Ends in: ${formatTimeLeft(timeLeft)}`
                   : `Starts in: ${formatTimeLeft(timeLeft)}`}
               </div>
-            </div>
+            </div> */}
 
             <dl className="mt-4 grid grid-cols-2 gap-4 text-sm text-slate-600">
               <div>
@@ -604,8 +604,9 @@ export default function BGRegistration() {
             </dl>
             <div className="text-center mt-6">
               <button
-                onClick={openModal}
-                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-4 rounded-lg shadow-md flex items-center justify-center gap-2"
+                // onClick={openModal} bg-emerald-600 hover:bg-emerald-700
+                disabled
+                className="w-full bg-gray-400 cursor-not-allowed text-white font-semibold px-6 py-4 rounded-lg shadow-md flex items-center justify-center gap-2"
               >
                 <span>Register Now</span>
                 <span className="flex items-center gap-1">
