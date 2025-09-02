@@ -285,9 +285,8 @@ export default function BGRegistration() {
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <button
-                  // onClick={openModal} bg-amber-500 hover:bg-amber-600
-                  disabled
-                  className="inline-flex items-center gap-3 bg-gray-400 cursor-not-allowed  text-white font-semibold px-5 py-3 rounded-lg shadow-lg transition"
+                  onClick={openModal} 
+                  className="inline-flex items-center gap-3 bg-amber-500 hover:bg-amber-600  text-white font-semibold px-5 py-3 rounded-lg shadow-lg transition"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -597,17 +596,16 @@ export default function BGRegistration() {
                   <span>FREE</span>
                 </dd>
               </div>
-              <div>
+{/*               <div>
                 <dt className="font-semibold">Schedule</dt>
                 <dd>25th Aug to 29th Aug</dd>
                 <dd>09:00 PM – 10:00 PM</dd>
-              </div>
+              </div> */}
             </dl>
             <div className="text-center mt-6">
               <button
-                // onClick={openModal} bg-emerald-600 hover:bg-emerald-700
-                disabled
-                className="w-full bg-gray-400 cursor-not-allowed text-white font-semibold px-6 py-4 rounded-lg shadow-md flex items-center justify-center gap-2"
+                onClick={openModal} 
+                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-4 rounded-lg shadow-md flex items-center justify-center gap-2"
               >
                 <span>Register Now</span>
                 <span className="flex items-center gap-1">
