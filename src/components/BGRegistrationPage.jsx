@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Background from "../assets/Background.jpg";
-import HGNPP from "../assets/HG_NPP.png"; // Example image, replace with your own
+import SUMIT_PR from "../assets/SUMIT_PR.jfif"; // Example image, replace with your own
 import ISKDHN from "../assets/ISKDHN.png";
 
 export default function BGRegistration() {
@@ -60,6 +60,7 @@ export default function BGRegistration() {
   }
 
   const colleges = [
+    "GEC, Palamu",
     "BIT Sindri",
     "IIT BHU",
     "IIT Dhanbad",
@@ -285,7 +286,7 @@ export default function BGRegistration() {
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <button
-                  onClick={openModal} 
+                  onClick={openModal}
                   className="inline-flex items-center gap-3 bg-amber-500 hover:bg-amber-600  text-white font-semibold px-5 py-3 rounded-lg shadow-lg transition"
                 >
                   <svg
@@ -315,17 +316,17 @@ export default function BGRegistration() {
           <div className="bg-white rounded-xl shadow-xl p-4 md:p-6 grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
             <div className="flex items-center gap-4">
               <img
-                src={HGNPP}
+                src={SUMIT_PR}
                 alt="Gita"
                 className="w-28 h-28 rounded-lg object-cover shadow-md"
               />
               <div>
-                <h3 className="text-lg font-semibold">Naam Prem Das</h3>
+                <h3 className="text-lg font-semibold">Sumit Ranjan</h3>
                 <p className="text-sm text-slate-600 mt-1">
-                  B.Tech (Mechanical Engineering), 2008
+                  B.Tech (Civil Engineering, IIEST Shibpur), 2019
                 </p>
                 <p className="text-sm text-slate-600 mt-1">
-                  President, ISKCON Dhanbad
+                  Director, ISKCON Youth Forum - Dhanbad
                 </p>
               </div>
             </div>
@@ -596,7 +597,7 @@ export default function BGRegistration() {
                   <span>FREE</span>
                 </dd>
               </div>
-{/*               <div>
+              {/*               <div>
                 <dt className="font-semibold">Schedule</dt>
                 <dd>25th Aug to 29th Aug</dd>
                 <dd>09:00 PM – 10:00 PM</dd>
@@ -604,7 +605,7 @@ export default function BGRegistration() {
             </dl>
             <div className="text-center mt-6">
               <button
-                onClick={openModal} 
+                onClick={openModal}
                 className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-4 rounded-lg shadow-md flex items-center justify-center gap-2"
               >
                 <span>Register Now</span>
